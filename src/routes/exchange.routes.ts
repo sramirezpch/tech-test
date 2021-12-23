@@ -2,7 +2,6 @@ import express from 'express';
 import {
     createExchangeRate,
     getExchangeRates,
-    deleteExchangeRates
 } from '../controllers/exchange.controller';
 const router = express.Router();
 
