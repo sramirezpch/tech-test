@@ -10,6 +10,10 @@ const ExchangeSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Target is required']
     },
+    rate: {
+        type: Number,
+        required: [true, 'Rate is required']
+    },
     date: {
         type: Date,
         required: [true, 'Date is required'],

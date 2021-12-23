@@ -2,7 +2,6 @@ import moment from 'moment';
 import rp from 'request-promise';
 
 import Exchange from '../models/Exchange';
-import logger from '../logger';
 
 export const createExchangeRate = async (req: any, res: any) => {
     const { source, target } = req.body;
@@ -16,12 +15,23 @@ export const createExchangeRate = async (req: any, res: any) => {
             json: true
         }
         const { data } = await rp(options);
+        const rate = Object.entries(data).find(entry => entry[0] === target.toUpperCase())[1];
         const today = moment().utc(true).toISOString();
 
-        const exchangeSaved = new Exchange({ source, target, today });
+        const exchangeSaved = new Exchange({ source, target, rate, today });
         await exchangeSaved.save();
         res.json(exchangeSaved);
     } catch (error) {
-        logger.error(error);
+        console.log(error);
+    }
+};
+
+export const getExchangeRates = async (req: any, res: any) => {
+    try {
+        const rates = await Exchange.find();
+        console.log(rates);
+        res.json(rates);
+    } catch (error) {
+        console.log(error);
     }
 }

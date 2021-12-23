@@ -1,5 +1,4 @@
 import express from 'express';
-import logger from './logger';
 import cors from 'cors';
 import env from 'dotenv';
 env.config();
@@ -20,5 +19,5 @@ app.get("/", (req, res) => {
 app.use('/trm', ExchangeRouter);
 
 app.listen(port, () => {
-    logger.log({ level: 'info', message: `Server started at port ${port}` })
+    console.log(`Server started at port ${port}`);
 });
