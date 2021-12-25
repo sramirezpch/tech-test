@@ -1,5 +1,7 @@
 {
     "compilerOptions": {
+        "strict": false,
+        "types": ["jest", "node"],
         "module": "commonjs",
         "esModuleInterop": true,
         "target": "es6",
@@ -16,5 +18,10 @@
     },
     "include": [
         "src/**/*"
+    ],
+    "exclude": [
+        "./test/",
+        "./node_modules/",
+        "./dist/"
     ]
 }
